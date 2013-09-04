@@ -763,4 +763,26 @@ test( "bug #8710: flip if flipped position fits more", function() {
 	}, "flip - top fits less" );
 });
 
+test("bug #9534: position in iframe window", function() {
+	expect(1);
+
+	var iframe = $("#bug-9534")[0];
+	var iframeWindow = iframe.contentWindow;
+	var iframeBody = iframe.contentDocument.body;
+
+	$(iframeBody).css({
+		"width" : "30px",
+		"height" : "30px"
+	});
+
+	collisionTest({
+		my : "center",
+		at : "center",
+		of : iframeWindow
+	}, {
+		top : 5,
+		left : 5
+	}, "positioned to iframe window");
+});
+
 }( jQuery ) );
